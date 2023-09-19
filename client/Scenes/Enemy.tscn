@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://b5yqkhh0eq675"]
+
+[ext_resource type="Texture2D" uid="uid://btowuv7e5t3vd" path="res://Assets/Characters/red_character.png" id="1_o76ng"]
+[ext_resource type="Texture2D" uid="uid://6w5js1vhbvsh" path="res://Assets/Characters/red_hand.png" id="2_yn5w5"]
+[ext_resource type="Script" path="res://Scripts/PlayerName.gd" id="5_8fb4l"]
+[ext_resource type="Texture2D" uid="uid://6r8agmcyhxjw" path="res://Assets/Items/shield_curved.png" id="5_xk3cv"]
+[ext_resource type="Texture2D" uid="uid://f36xq7y028ik" path="res://Assets/Items/weapon_axe_double.png" id="6_pq67k"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v2xev"]
+radius = 40.0
+
+[sub_resource type="Animation" id="Animation_4spqr"]
+resource_name = "idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Axis/Body/Lhand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-64, -21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Axis/Body/Rhand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, -23)]
+}
+
+[sub_resource type="Animation" id="Animation_c6klw"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Axis/Body/Lhand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-64, -23), Vector2(-70, -5), Vector2(-64, -23), Vector2(-58, -41), Vector2(-64, -23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Axis/Body/Rhand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(64, -23), Vector2(58, -41), Vector2(64, -23), Vector2(70, -5), Vector2(64, -23)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cde7y"]
+_data = {
+"idle": SubResource("Animation_4spqr"),
+"walk": SubResource("Animation_c6klw")
+}
+
+[sub_resource type="FontVariation" id="FontVariation_jc2nn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfjau"]
+bg_color = Color(0, 0, 0, 0.384314)
+
+[node name="Enemy" type="CharacterBody2D"]
+
+[node name="Axis" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite2D" parent="Axis"]
+texture = ExtResource("1_o76ng")
+
+[node name="Lhand" type="Sprite2D" parent="Axis/Body"]
+position = Vector2(-64, -21)
+texture = ExtResource("2_yn5w5")
+
+[node name="Litem" type="Sprite2D" parent="Axis/Body/Lhand"]
+show_behind_parent = true
+position = Vector2(-14, -9)
+rotation = -0.916486
+texture = ExtResource("5_xk3cv")
+
+[node name="Rhand" type="Sprite2D" parent="Axis/Body"]
+position = Vector2(64, -23)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_yn5w5")
+
+[node name="Ritem" type="Sprite2D" parent="Axis/Body/Rhand"]
+show_behind_parent = true
+position = Vector2(-1, -24)
+texture = ExtResource("6_pq67k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_v2xev")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_cde7y")
+}
+
+[node name="EnemyName" type="Label" parent="."]
+offset_left = -54.0
+offset_top = -71.0
+offset_right = 55.0
+offset_bottom = -45.0
+theme_override_fonts/font = SubResource("FontVariation_jc2nn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vfjau")
+text = "Player Name"
+horizontal_alignment = 1
+script = ExtResource("5_8fb4l")
