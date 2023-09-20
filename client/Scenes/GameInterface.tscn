@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://4aip121jr4s2"]
+[gd_scene load_steps=5 format=3 uid="uid://4aip121jr4s2"]
 
 [ext_resource type="Script" path="res://Scripts/FullscreenButton.gd" id="1_p1bih"]
 [ext_resource type="Texture2D" uid="uid://k52uejagaxxh" path="res://Assets/Icons/White/larger.png" id="2_h6sya"]
 [ext_resource type="Texture2D" uid="uid://bllo6fwa6tl2m" path="res://Assets/Icons/White/smaller.png" id="3_rp4ie"]
+[ext_resource type="AudioStream" uid="uid://cvh1ohy3ga445" path="res://Assets/SFX/click1.ogg" id="4_cmo5c"]
 
 [node name="GameInterface" type="CanvasLayer"]
 
@@ -13,8 +14,13 @@ anchor_right = 1.0
 offset_left = -40.0
 offset_bottom = 40.0
 grow_horizontal = 0
+texture_normal = ExtResource("2_h6sya")
 script = ExtResource("1_p1bih")
 fullscreen_on_icon = ExtResource("2_h6sya")
 fullscreen_off_icon = ExtResource("3_rp4ie")
+
+[node name="GIAudio" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_cmo5c")
 
 [connection signal="pressed" from="FullscreenButton" to="FullscreenButton" method="_on_pressed"]

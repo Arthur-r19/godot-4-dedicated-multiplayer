@@ -9,6 +9,7 @@ func _ready():
 
 func _on_pressed():
 	GameSettings.fullscreen = !GameSettings.fullscreen
+	%GIAudio.play()
 	set_button_texture()
 
 func set_button_texture():
