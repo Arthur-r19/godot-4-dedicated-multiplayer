@@ -1,5 +1,6 @@
-[gd_scene load_steps=13 format=3 uid="uid://crbdrdd6h88ri"]
+[gd_scene load_steps=15 format=3 uid="uid://crbdrdd6h88ri"]
 
+[ext_resource type="Script" path="res://Scripts/GameMenu.gd" id="1_lsehf"]
 [ext_resource type="Texture2D" uid="uid://dauv2gl5cwal1" path="res://Assets/game_menu_mockup.png" id="1_o10lf"]
 [ext_resource type="StyleBox" uid="uid://dkpsgdqk7lt1b" path="res://Resources/BluePanelStyleBox.tres" id="2_fdtve"]
 [ext_resource type="FontFile" uid="uid://dq16on1ky5x77" path="res://Assets/Fonts/kenvector_future.ttf" id="3_it2k0"]
@@ -12,6 +13,7 @@
 [ext_resource type="StyleBox" uid="uid://d0e0msv43h3yh" path="res://Resources/UI/PressedButtonBlue.tres" id="10_brud0"]
 [ext_resource type="Texture2D" uid="uid://6rkiiwelvk7l" path="res://Assets/Icons/White/wrench.png" id="11_kryr0"]
 [ext_resource type="Texture2D" uid="uid://bxm82txkqxi7s" path="res://Assets/Icons/White/star.png" id="12_y2384"]
+[ext_resource type="AudioStream" uid="uid://cvh1ohy3ga445" path="res://Assets/SFX/click1.ogg" id="14_b6onx"]
 
 [node name="GameMenu" type="Control"]
 layout_mode = 3
@@ -20,6 +22,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_lsehf")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -104,3 +107,10 @@ text = "Credits"
 icon = ExtResource("12_y2384")
 icon_alignment = 2
 expand_icon = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_b6onx")
+
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
