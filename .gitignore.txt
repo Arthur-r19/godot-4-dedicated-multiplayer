@@ -1,2 +1,0 @@
-client/.godot
-server/.godot

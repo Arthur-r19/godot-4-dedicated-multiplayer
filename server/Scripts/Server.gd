@@ -8,6 +8,7 @@ var network = ENetMultiplayerPeer.new()
 func _ready():
 	start_server()
 	
+
 func start_server():
 	network.create_server(PORT, MAX_PLAYERS)
 	multiplayer.multiplayer_peer = network
@@ -20,7 +21,7 @@ func start_server():
 func _peer_connected(id):
 	print("User " +str(id)+" Connected")
 	
-	
+
 func _peer_disconnected(id):
 	print("User " +str(id)+" Disconnected")
 	
