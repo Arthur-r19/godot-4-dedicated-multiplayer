@@ -30,6 +30,8 @@ func _physics_process(_delta):
 	if !is_attacking and Input.is_action_pressed("attack"):
 		is_attacking = true
 		$AnimationPlayer.play("attack_2")
+		Server.send_player_attack()
+	
 	elif !is_defending and Input.is_action_pressed("defend"):
 		is_defending = true
 		$AnimationPlayer.play("defend")
@@ -49,5 +51,5 @@ func end_defend():
 	is_defending = false
 	
 func set_player_state():
-	player_state = {"T": Time.get_unix_time_from_system(), "P": global_position}
+	player_state = {"T": Time.get_unix_time_from_system(), "P": global_position, "A": $Axis.rotation}
 	Server.send_player_state(player_state)

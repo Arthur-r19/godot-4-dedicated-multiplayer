@@ -50,7 +50,15 @@ func receive_player_state(player_state):
 			player_state_collection[player_id] = player_state
 	else:
 		player_state_collection[player_id] = player_state
-	
+
+@rpc("unreliable", "any_peer")
+func receive_player_attack():
+	var player_id = multiplayer.get_remote_sender_id()
+	rpc("set_player_attack", player_id)
+
+@rpc("unreliable")
+func set_player_attack(player_id): pass
+
 @rpc("unreliable")
 func receive_world_state(world_state): pass
 
