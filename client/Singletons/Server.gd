@@ -23,10 +23,34 @@ func start_server():
 
 
 func _on_connected_to_server():
-	print("Connected to server")
+	Pry.log("Connected to server")
 	SceneHandler.set_open_world_scene()
 	
 func _on_connection_failed():
 	print("Failed to connect")
 	SceneHandler.set_game_menu_scene()
 	
+
+@rpc
+func spawn_player(player_id, spawn_position):
+	Pry.log('trying to spawn player '+str(player_id)+' at '+str(spawn_position))
+	get_tree().root.get_node("World/Enemies").spawn(player_id, spawn_position)
+
+@rpc
+func despawn_player(player_id):
+	Pry.log('despawning player '+str(player_id))
+	get_tree().root.get_node("World/Enemies").despawn(player_id)
+
+@rpc("unreliable", "any_peer")
+func receive_player_state(player_state): pass
+
+#@rpc("unreliable")
+#func send_world_state(world_state): pass
+
+func send_player_state(player_state):
+	Pry.log("sending my state"+str(player_state))
+	rpc_id(1, "receive_player_state", player_state)
+
+@rpc("unreliable")
+func receive_world_state(world_state):
+	get_tree().root.get_node("World/Enemies").update(world_state)

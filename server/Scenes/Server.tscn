@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsfxbli7pqhrq"]
+[gd_scene load_steps=4 format=3 uid="uid://dsfxbli7pqhrq"]
 
 [ext_resource type="Script" path="res://Scripts/Server.gd" id="1_7xyw2"]
+[ext_resource type="Script" path="res://Scripts/PlayerVerification.gd" id="2_dsvrj"]
+[ext_resource type="Script" path="res://Scripts/StateProcessing.gd" id="3_khhy1"]
 
 [node name="Server" type="Node"]
 script = ExtResource("1_7xyw2")
+
+[node name="PlayerVerification" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_dsvrj")
+
+[node name="StateProcessing" type="Node" parent="."]
+script = ExtResource("3_khhy1")

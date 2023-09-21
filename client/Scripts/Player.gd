@@ -6,7 +6,12 @@ extends CharacterBody2D
 var is_attacking = false
 var is_defending = false
 
-func _physics_process(delta):
+var player_state
+
+func _process(delta):
+	pass
+
+func _physics_process(_delta):
 	var direction = Vector2(Input.get_axis("move_left", "move_right"), Input.get_axis("move_up", "move_down")).normalized()
 	velocity = direction * SPEED
 	
@@ -33,6 +38,8 @@ func _physics_process(delta):
 		velocity *= SPEED_WHILE_DEFENDING
 	
 	move_and_slide()
+	
+	set_player_state()
 
 func end_attack():
 	is_attacking = false
@@ -41,3 +48,6 @@ func hold_defend():
 func end_defend():
 	is_defending = false
 	
+func set_player_state():
+	player_state = {"T": Time.get_unix_time_from_system(), "P": global_position}
+	Server.send_player_state(player_state)

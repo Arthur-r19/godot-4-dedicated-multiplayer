@@ -19,7 +19,7 @@ func _ready():
 	var gameInterface = gameInterfaceScene.instantiate()
 	get_parent().add_child.call_deferred(gameInterface)
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("check_name"):
 		name_tag_visibility = !name_tag_visibility
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5yqkhh0eq675"]
+[gd_scene load_steps=13 format=3 uid="uid://b5yqkhh0eq675"]
 
 [ext_resource type="Texture2D" uid="uid://btowuv7e5t3vd" path="res://Assets/Characters/red_character.png" id="1_o76ng"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="1_xxaad"]
 [ext_resource type="Texture2D" uid="uid://6w5js1vhbvsh" path="res://Assets/Characters/red_hand.png" id="2_yn5w5"]
 [ext_resource type="Script" path="res://Scripts/PlayerName.gd" id="5_8fb4l"]
 [ext_resource type="Texture2D" uid="uid://6r8agmcyhxjw" path="res://Assets/Items/shield_curved.png" id="5_xk3cv"]
@@ -79,6 +80,8 @@ _data = {
 bg_color = Color(0, 0, 0, 0.384314)
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_mask = 0
+script = ExtResource("1_xxaad")
 
 [node name="Axis" type="Node2D" parent="."]
 

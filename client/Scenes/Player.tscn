@@ -426,6 +426,7 @@ _data = {
 bg_color = Color(0, 0, 0, 0.384314)
 
 [node name="Player" type="CharacterBody2D"]
+floor_stop_on_slope = false
 script = ExtResource("1_0ab1p")
 
 [node name="Axis" type="Node2D" parent="."]
@@ -467,6 +468,7 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
 
 [node name="PlayerName" type="Label" parent="."]
 offset_left = -54.0
