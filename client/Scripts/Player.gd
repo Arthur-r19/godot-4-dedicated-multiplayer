@@ -7,8 +7,8 @@ var is_attacking = false
 var is_defending = false
 
 var player_state
-
-func _process(delta):
+var player_name
+func _process(_delta):
 	pass
 
 func _physics_process(_delta):

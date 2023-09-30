@@ -1,5 +1,6 @@
 extends Node
 
+@export var ip = "127.0.0.1"
 @export var PORT = 1909
 @export var MAX_PLAYERS = 100
 var network = ENetMultiplayerPeer.new()
@@ -12,6 +13,7 @@ func _ready():
 	
 
 func start_server():
+	network.set_bind_ip(ip)
 	network.create_server(PORT, MAX_PLAYERS)
 	multiplayer.multiplayer_peer = network
 	print("Server Started")

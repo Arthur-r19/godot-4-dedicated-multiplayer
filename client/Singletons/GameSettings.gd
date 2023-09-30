@@ -1,6 +1,14 @@
 extends Node
 
-var name_tag_visibility = true
+signal name_tag_visibility_changed(new_value)
+
+var name_tag_visibility = true:
+	get:
+		return name_tag_visibility
+	set(new_value):
+		name_tag_visibility_changed.emit(new_value)
+		name_tag_visibility = new_value
+
 var fullscreen = true :
 	get:
 		return fullscreen

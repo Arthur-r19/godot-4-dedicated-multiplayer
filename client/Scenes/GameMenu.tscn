@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://crbdrdd6h88ri"]
+[gd_scene load_steps=16 format=3 uid="uid://crbdrdd6h88ri"]
 
 [ext_resource type="Script" path="res://Scripts/GameMenu.gd" id="1_lsehf"]
 [ext_resource type="Texture2D" uid="uid://dauv2gl5cwal1" path="res://Assets/game_menu_mockup.png" id="1_o10lf"]
@@ -14,6 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://6rkiiwelvk7l" path="res://Assets/Icons/White/wrench.png" id="11_kryr0"]
 [ext_resource type="Texture2D" uid="uid://bxm82txkqxi7s" path="res://Assets/Icons/White/star.png" id="12_y2384"]
 [ext_resource type="AudioStream" uid="uid://cvh1ohy3ga445" path="res://Assets/SFX/click1.ogg" id="14_b6onx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7685"]
+font_size = 22
 
 [node name="GameMenu" type="Control"]
 layout_mode = 3
@@ -40,40 +43,54 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -145.5
-offset_top = -100.5
-offset_right = 145.5
-offset_bottom = 100.5
+offset_left = -140.5
+offset_top = -95.5
+offset_right = 140.5
+offset_bottom = 95.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_fdtve")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
-[node name="GameTitle" type="Label" parent="PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GameTitle" type="Label" parent="PanelContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_it2k0")
-theme_override_font_sizes/font_size = 24
 text = "Awesome Game"
+label_settings = SubResource("LabelSettings_x7685")
 horizontal_alignment = 1
-vertical_alignment = 1
+vertical_alignment = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = ExtResource("4_pt7a8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="JoinButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="JoinButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_6ifg0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("6_1u22w")
 theme_override_styles/hover = ExtResource("6_1u22w")
 theme_override_styles/pressed = ExtResource("7_2yj0w")
@@ -82,12 +99,13 @@ icon = ExtResource("8_xofqc")
 icon_alignment = 2
 expand_icon = true
 
-[node name="OptionsButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_6ifg0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = ExtResource("9_f3iua")
 theme_override_styles/hover = ExtResource("9_f3iua")
 theme_override_styles/pressed = ExtResource("10_brud0")
@@ -96,12 +114,13 @@ icon = ExtResource("11_kryr0")
 icon_alignment = 2
 expand_icon = true
 
-[node name="CreditsButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 55)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_6ifg0")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 19
 theme_override_styles/normal = ExtResource("9_f3iua")
 theme_override_styles/hover = ExtResource("9_f3iua")
 theme_override_styles/pressed = ExtResource("10_brud0")
@@ -113,6 +132,6 @@ expand_icon = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_b6onx")
 
-[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="PanelContainer/VBoxContainer/PanelContainer/MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]

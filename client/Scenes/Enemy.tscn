@@ -386,6 +386,7 @@ bg_color = Color(0, 0, 0, 0.384314)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_mask = 0
+motion_mode = 1
 script = ExtResource("1_xxaad")
 
 [node name="Axis" type="Node2D" parent="."]
@@ -394,8 +395,7 @@ script = ExtResource("1_xxaad")
 texture = ExtResource("1_o76ng")
 
 [node name="Lhand" type="Sprite2D" parent="Axis/Body"]
-position = Vector2(-56, 22)
-rotation = -0.785398
+position = Vector2(-64, -23)
 texture = ExtResource("2_yn5w5")
 
 [node name="Litem" type="Sprite2D" parent="Axis/Body/Lhand"]
@@ -405,8 +405,7 @@ rotation = -0.916486
 texture = ExtResource("5_xk3cv")
 
 [node name="Rhand" type="Sprite2D" parent="Axis/Body"]
-position = Vector2(75, -4)
-rotation = -0.174533
+position = Vector2(64, -23)
 scale = Vector2(-1, 1)
 texture = ExtResource("2_yn5w5")
 

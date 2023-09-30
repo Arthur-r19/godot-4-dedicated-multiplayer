@@ -23,17 +23,17 @@ func start_server():
 
 
 func _on_connected_to_server():
-	Pry.log("Connected to server")
+	Pry.LOG("Connected to server")
 	SceneHandler.set_open_world_scene()
 	
 func _on_connection_failed():
-	print("Failed to connect")
+	Pry.LOG("Failed to connect")
 	SceneHandler.set_game_menu_scene()
 	
 
 @rpc
 func spawn_player(player_id, spawn_position):
-	Pry.log('NEW player '+str(player_id)+' at '+str(spawn_position))
+	# Pry.LOG('NEW player '+str(player_id)+' at '+str(spawn_position))
 	get_tree().root.get_node("World/Enemies").spawn(player_id, spawn_position)
 
 @rpc
@@ -54,7 +54,7 @@ func send_player_attack():
 	rpc_id(1, "receive_player_attack")
 
 func send_player_state(player_state):
-	#Pry.log("sending my state"+str(player_state))
+	#Pry.LOG("sending my state"+str(player_state))
 	rpc_id(1, "receive_player_state", player_state)
 
 @rpc("unreliable")

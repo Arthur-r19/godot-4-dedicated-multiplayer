@@ -18,7 +18,9 @@ radius = 40.0
 bg_color = Color(0, 0, 0, 0.384314)
 
 [node name="Player" type="CharacterBody2D"]
+motion_mode = 1
 floor_stop_on_slope = false
+safe_margin = 0.001
 script = ExtResource("1_0ab1p")
 
 [node name="Axis" type="Node2D" parent="."]
